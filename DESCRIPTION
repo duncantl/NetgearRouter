@@ -1,0 +1,8 @@
+Package: NetgearRouter
+Version: 0.1-0
+Title: Query Netgear router
+Description: Get the up- and down-stream channel information and the log from a Netgear router, at least an CBR750/Orbi router.
+Author: Duncan Temple Lang
+Maintainer: Duncan Temple Lang <duncan@r-project.org>
+License: BSD
+Imports: XML, RCurl
