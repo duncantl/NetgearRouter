@@ -92,3 +92,36 @@ The columns include
 Calls all of the functions above, collects the results into a list
 and writes them to an RDS file.
 This is used to collect the results at regular intervals.
+
+
+
+## Launchd
+
+On OSX, we can use launchctl to schedule a call to `cron()` at regular intervals.
+The XML file specifying the task details is installed in the package as
+local.getrouterinfo.plist. You can find it with
+```r
+system.file("local.getrouterinfo.plist", package = "NetgearRouter")
+```
+
+The shell commannds unload any existing version and load the current version:
+```sh
+launchctl unload local.getrouterinfo.plist 
+launchctl load local.getrouterinfo.plist 
+```
+
+You can edit the XML .plist file to change the
++ interval between calls which defaults to 10 minutes
++ the directory in which the RDS files are saved
++ the locale for your router.
+
+You can specify the director for the RDS files by omitting it from the call to `cron()` in the XML
+file and setting
+```r
+options(RouterLogDirectory = "/path/to/directory")
+```
+(~ will be expanded appropriately.)
+
+
+The locale defaults to UTF-8.  It is unclear whether you can change this on the router, 
+and if not, this default makes sense.
