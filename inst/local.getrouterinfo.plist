@@ -10,9 +10,7 @@
     <string>/usr/local/bin/Rscript</string>
     <string>-e</string>
     <string>
-      .libPaths(c("/Users/duncan/Rpackages4", .libPaths()));
-      Sys.setlocale( locale = "en_US.UTF-8");
-      NetgearRouter::cron("/Users/duncan/RouterLogs")
+      NetgearRouter::cron("/Users/duncan/RouterLogs", locale = "en_US.UTF-8")
     </string>
 <!--    
    We can separate the expressions with multiple -e arguments
@@ -28,7 +26,7 @@
   <integer>1</integer>
 
   <key>StartInterval</key>
-  <integer>120</integer>
+  <integer>120</integer> 	<!-- every 2 minutes. -->
 
   <key>RunAtLoad</key>
   <true/>
