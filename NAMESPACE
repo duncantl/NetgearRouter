@@ -3,4 +3,7 @@ import(XML)
 
 
 export(getLog, getChannelInfo, getCon)
+export(statistics, traffic)
+
+export(cron)
 
