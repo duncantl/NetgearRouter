@@ -46,13 +46,15 @@ to the `cron()` function when called via launchd or crontab in non-interactive R
 
 ## The functions
 
-### `getLog()` returns a data frame with 3 columns.
+### `getLog()`
+Returns a data frame with 3 columns.
 + the type of the log message
 + the time-date stamp
 + the information in the message.
 
 
-### `getChannelInfo()` returns 5 data.frames: 
+### `getChannelInfo()` 
+Returns 5 data.frames: 
 + the startup procedure status and comments, 
 + the downstream bonded channels
 + the upstream bonded channels
@@ -68,13 +70,15 @@ The elements common to all of these data.frames are
 + Frequency (in Hertz)
 + Power (in dBmV)
 
-### `traffic` returns a data.frame
+### `traffic` 
+Returns a data.frame
 with rows corresponding to diferent time periods (today, yesterday, week, month, previous month).
 The columns include
 + the upload and download totals in megabytes
 + the upload and download average 
 
-### `statistics()` returns a data.frame with rows for each 
+### `statistics()` 
+Returns a data.frame with rows for each 
 port (WAN, LAN1, LAN2, ..., 2.4G WLAN, 5G WLAN, WLAN Backhaul).
 The columns include
 + status
@@ -85,3 +89,6 @@ The columns include
 
 
 ### `cron()`
+Calls all of the functions above, collects the results into a list
+and writes them to an RDS file.
+This is used to collect the results at regular intervals.
