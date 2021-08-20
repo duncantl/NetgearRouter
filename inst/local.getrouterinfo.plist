@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>local.getmodeminfo</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/local/bin/Rscript</string>
+    <string>-e</string>
+    <string>
+      .libPaths(c("/Users/duncan/Rpackages4", .libPaths()));
+      Sys.setlocale( locale = "en_US.UTF-8");
+      NetgearRouter::cron("/Users/duncan/RouterLogs")
+    </string>
+<!--    
+   We can separate the expressions with multiple -e arguments
+    <string>.libPaths(c("/Users/duncan/Rpackages4", .libPaths()))</string>
+    <string>-e</string>
+    <string>Sys.setlocale( locale = "en_US.UTF-8")</string>
+    <string>-e</string>    
+    <string>NetgearRouter::cron("/Users/duncan/RouterLogs")</string>
+-->
+  </array>
+
+  <key>Nice</key>
+  <integer>1</integer>
+
+  <key>StartInterval</key>
+  <integer>120</integer>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>StandardErrorPath</key>
+  <string>/tmp/RouterInfo.err</string>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/RouterInfo.out</string>
+</dict>
+</plist>

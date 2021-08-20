@@ -1,0 +1,2 @@
+# every 10 minutes.
+0-59/10 * * * * Rscript -e '.libPaths(c("/Users/duncan/Rpackages4", .libPaths())); Sys.setlocale( locale = "en_US.UTF-8"); NetgearRouter::cron("/Users/duncan/RouterLogs", "password")'
