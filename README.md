@@ -125,3 +125,40 @@ options(RouterLogDirectory = "/path/to/directory")
 
 The locale defaults to UTF-8.  It is unclear whether you can change this on the router, 
 and if not, this default makes sense.
+
+
+
+
+## Reading the RDS files
+
+There are functions to help read the RDS files and combine elements across RDS files.
+These take the directory and read the RDS files, extract the relevant element and combines them.
+
+`readLogs()` combines all of the log files. We use this to find when the modem disconnects and
+reconnects from the ISP.
+```r
+log = readLogs()
+dis = getDisconnects(log)
+```
+Then we find the RDS file that is closest to each of these dates
+```r
+before = unique(sapply(dis$time, findClosestFile))
+[1] "/Users/duncan/RouterLogs/2021_08_20_10:45:36.rds"
+[2] "/Users/duncan/RouterLogs/2021_08_20_21:27:15.rds"
+```
+
+
+We can read these files and combine the downstream
+
+```
+combineRDS(list("info", 2), files = before)
+combineRDS(c("info", "DSTable"), files = before)
+```
+Note that this puts the date from the file into each row of the data.frame.
+
+If we want to look at all of the downstream channel information, not just those before the
+disconnects, we can call `combineRDS()` but without specifying the files. It will read all of the
+RDS files.
+```
+ds = combineRDS(list("info", 2))
+```
